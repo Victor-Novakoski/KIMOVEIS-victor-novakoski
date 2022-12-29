@@ -9,7 +9,7 @@ const validatedIsAdmMiddleware = async (
   const isAdm = req.user.isAdm
   const id = req.user.id
   const params = req.params.id
-
+  
   if (isAdm) {
     return next()
   }

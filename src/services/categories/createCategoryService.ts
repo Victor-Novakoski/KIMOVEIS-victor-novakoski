@@ -1,6 +1,5 @@
 import AppDataSource from '../../data-source'
-import Categories from '../../entities/categoriesEntity'
-import Properties from '../../entities/propertiesEntity'
+import Category from '../../entities/categoriesEntity'
 import AppError from '../../errors/AppError'
 import { ICategoryRequest } from '../../interfaces/categories'
 
@@ -8,7 +7,7 @@ const createCategoryService = async (name: ICategoryRequest): Promise<ICategoryR
     try {
         
         // const propRepository = AppDataSource.getRepository(Properties)
-        const categoryRepository = AppDataSource.getRepository(Categories)
+        const categoryRepository = AppDataSource.getRepository(Category)
     
         const createdCategory = categoryRepository.create(name)
         await categoryRepository.save(createdCategory)

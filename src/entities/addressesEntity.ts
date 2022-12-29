@@ -8,7 +8,7 @@ class Addresses {
   @Column({ length: 50 })
   district: string
 
-  @Column({ length: 10 })
+  @Column({ length: 8 })
   zipCode: string
 
   @Column({ length: 5 })

@@ -47,6 +47,6 @@ class User {
   }
 
   @OneToMany(() => Schedules, schedules => schedules.user)
-  schedules: Schedules
+  schedules: Schedules[]
 }
 export default User

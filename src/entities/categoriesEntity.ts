@@ -1,4 +1,4 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm'
+import { Column, Entity, JoinColumn, OneToMany, PrimaryGeneratedColumn } from 'typeorm'
 import Property from './propertiesEntity'
 
 @Entity('categories')
@@ -10,7 +10,8 @@ class Category {
   name: string
 
   @OneToMany(() => Property, property => property.category)
-  property:Property
+  @JoinColumn({ name: 'propertyId'})
+  properties: Property[]
 }
 
 export default Category

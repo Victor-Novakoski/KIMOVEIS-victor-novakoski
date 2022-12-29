@@ -19,7 +19,7 @@ class Schedules {
   @Column({ type: 'time' })
   hour: string
 
-  @ManyToOne(() => Property, propertie => propertie.schedules)
+  @ManyToOne(() => Property, property => property.schedules)
   property: Property
 
   @ManyToOne(() => User, user => user.schedules)

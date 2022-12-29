@@ -33,20 +33,20 @@ class Property {
   @UpdateDateColumn()
   updatedAt: Date
 
-  // @Column()
-  // categoryId:string
+  @ManyToOne(() => Category, category => category.properties)
+  @JoinColumn({ name: 'categoryId'})
+  category: Category
 
-  @ManyToOne(() => Category, category => category.property)
-  @JoinColumn({name: 'categoryId'})
-  category:Category
-  
-  @OneToOne(() => Addresses ) 
-  @JoinColumn({name: 'addressId'})
-  address:Addresses
+  // @Column({type:'uuid'})
+  // categoryId: string
+
+  @OneToOne(() => Addresses)
+  @JoinColumn({ name: 'addressId' })
+  address: Addresses
 
   @OneToMany(() => Schedules, schedules => schedules.property)
-  @JoinColumn({name: 'schedulesId'})
-  schedules: Schedules
+  @JoinColumn({ name: 'schedulesId' })
+  schedules: Schedules[]
 }
 
 export default Property

@@ -8,7 +8,6 @@ export const createCategoryController = async (
 ) => {
   
   const newCategory = await createCategoryService(req.body)
-  // console.log(req.body)
   return resp.status(201).json(newCategory)
 }
 
