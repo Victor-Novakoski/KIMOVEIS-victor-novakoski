@@ -53,7 +53,7 @@ describe("/categories", () => {
     test("POST /categories - should not be able to create category not being admin",async () => {
         const userLoginResponse = await request(app).post("/login").send(mockedUserLogin);
         const response = await request(app).post('/categories').set("Authorization", `Bearer ${userLoginResponse.body.token}`).send(mockedCategory)
-
+        
         expect(response.body).toHaveProperty("message")
         expect(response.status).toBe(403)
              
