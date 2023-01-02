@@ -10,7 +10,6 @@ class Category {
   name: string
 
   @OneToMany(() => Property, property => property.category)
-  @JoinColumn({ name: 'propertyId'})
   properties: Property[]
 }
 

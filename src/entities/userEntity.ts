@@ -37,6 +37,9 @@ class User {
   @UpdateDateColumn()
   updatedAt: Date
 
+  @OneToMany(() => Schedules, schedules => schedules.user)
+  schedules: Schedules[]
+  
   @BeforeUpdate()
   @BeforeInsert()
   hashPassword() {
@@ -46,7 +49,5 @@ class User {
     }
   }
 
-  @OneToMany(() => Schedules, schedules => schedules.user)
-  schedules: Schedules[]
 }
 export default User

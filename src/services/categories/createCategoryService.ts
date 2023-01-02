@@ -6,20 +6,10 @@ import { ICategoryRequest } from '../../interfaces/categories'
 const createCategoryService = async (name: ICategoryRequest): Promise<ICategoryRequest> => {
     try {
         
-        // const propRepository = AppDataSource.getRepository(Properties)
         const categoryRepository = AppDataSource.getRepository(Category)
     
         const createdCategory = categoryRepository.create(name)
         await categoryRepository.save(createdCategory)
-    
-    //     await propRepository.update(
-    //       {
-    //           id: propId
-    //       },
-    //       {
-    //           address: createdCategory
-    //       }
-    //   )
     
         return createdCategory
     } catch (error) {

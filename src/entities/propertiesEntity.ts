@@ -33,16 +33,14 @@ class Property {
   @UpdateDateColumn()
   updatedAt: Date
 
+  @OneToOne(() => Addresses)
+  @JoinColumn()
+  address: Addresses
+  
   @ManyToOne(() => Category, category => category.properties)
-  @JoinColumn({ name: 'categoryId'})
   category: Category
 
-  @OneToOne(() => Addresses)
-  @JoinColumn({ name: 'addressId' })
-  address: Addresses
-
   @OneToMany(() => Schedules, schedules => schedules.property)
-  @JoinColumn({ name: 'schedulesId' })
   schedules: Schedules[]
 }
 

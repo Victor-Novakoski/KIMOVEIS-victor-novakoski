@@ -5,11 +5,14 @@ import {
 } from '../controllers/schedulesController'
 import ensureAuthMiddleware from '../middlewares/ensureAuthMiddleware'
 import isAdminMiddleware from '../middlewares/isAdminMiddleware'
+import validatedTimeAndDateMiddleware from '../middlewares/validatedTimeAndDateMiddleware'
 
 const schedulesRoutes = Router()
 
-schedulesRoutes.post('', ensureAuthMiddleware, createSchedulesController)
+schedulesRoutes.post('', ensureAuthMiddleware, 
+validatedTimeAndDateMiddleware,
+createSchedulesController)
 
-schedulesRoutes.get('properties/:id', listAllSchedulesController)
+schedulesRoutes.get('/properties/:id',ensureAuthMiddleware, isAdminMiddleware, listAllSchedulesController)
 
 export default schedulesRoutes
