@@ -53,7 +53,7 @@ describe("/categories", () => {
     test("POST /categories - should not be able to create category not being admin",async () => {
         const userLoginResponse = await request(app).post("/login").send(mockedUserLogin);
         const response = await request(app).post('/categories').set("Authorization", `Bearer ${userLoginResponse.body.token}`).send(mockedCategory)
-
+        
         expect(response.body).toHaveProperty("message")
         expect(response.status).toBe(403)
              
@@ -72,6 +72,7 @@ describe("/categories", () => {
         const category = await request(app).get('/categories')
         const response = await request(app).get(`/categories/${category.body[0].id}/properties`)
         expect(response.status).toBe(200)
+        console.log(response.body)
         expect(response.body).toHaveProperty("id")
         expect(response.body).toHaveProperty("name")
         expect(response.body).toHaveProperty("properties")
