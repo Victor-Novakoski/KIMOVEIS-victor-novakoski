@@ -1,11 +1,11 @@
 import { Router } from 'express'
 import {
   createCategoryController,
+  listCategoriesIdPropController,
   listCategoryController,
 } from '../controllers/categoriesController'
 import ensureAuthMiddleware from '../middlewares/ensureAuthMiddleware'
 import isAdminMiddleware from '../middlewares/isAdminMiddleware'
-import validatedIsAdmMiddleware from '../middlewares/validatedIsAdmMiddleware'
 
 const categoriesRoutes = Router()
 
@@ -16,6 +16,6 @@ categoriesRoutes.post(
   createCategoryController
 )
 categoriesRoutes.get('', listCategoryController)
-categoriesRoutes.get('/:id/properties')
+categoriesRoutes.get('/:id/properties',listCategoriesIdPropController)
 
 export default categoriesRoutes

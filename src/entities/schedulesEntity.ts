@@ -2,6 +2,7 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm'
@@ -20,10 +21,18 @@ class Schedules {
   hour: string
 
   @ManyToOne(() => Property, property => property.schedules)
+  @JoinColumn({name:'propertyId'})
   property: Property
 
+  @Column({type:'uuid'})
+  propertyId:string
+
   @ManyToOne(() => User, user => user.schedules)
+  @JoinColumn({name:'userId'})
   user: User
+
+  @Column({type:'uuid'})
+  userId:string
 }
 
 export default Schedules

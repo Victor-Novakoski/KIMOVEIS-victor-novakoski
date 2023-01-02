@@ -10,7 +10,6 @@ const createPropService = async (
   categoryId: string,
   addressData:IAddressRequest 
 ): Promise<Property> => {
-  // try {
     const propRepository = AppDataSource.getRepository(Property)
     const categoryRepository = AppDataSource.getRepository(Category)
     const addressRepository = AppDataSource.getRepository(Addresses)
@@ -19,10 +18,6 @@ const createPropService = async (
       id: categoryId,
     })
 
-    if(!category){
-      throw new AppError("category not found", 404)
-    }
-
     const propExist = await addressRepository.findOneBy({
       district: addressData.district,
       zipCode: addressData.zipCode,
@@ -30,11 +25,15 @@ const createPropService = async (
       city: addressData.city,
       state: addressData.state,
     })
+    
+    if(!category){
+      throw new AppError("category not found", 404)
+    }
 
     if(addressData.zipCode.length > 8){
       throw new AppError("zipCode invalid", 400)
     }
-    
+
     if(addressData.state.length > 2){
       throw new AppError("state invalid", 400)
     }
@@ -56,9 +55,6 @@ const createPropService = async (
     await propRepository.save(createdProp)
     
     return createdProp
-  // } catch (error) {
-  //   throw new AppError('error.message', 409)
-  // }
 }
 
 export default createPropService

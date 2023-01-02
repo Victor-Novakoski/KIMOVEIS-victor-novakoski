@@ -37,9 +37,6 @@ class Property {
   @JoinColumn({ name: 'categoryId'})
   category: Category
 
-  // @Column({type:'uuid'})
-  // categoryId: string
-
   @OneToOne(() => Addresses)
   @JoinColumn({ name: 'addressId' })
   address: Addresses
